@@ -58,7 +58,7 @@ async function loadGitHubProfile() {
 
     catch (error) {
 
-        console.error(error);
+        console.error("GitHub API Error:", error);
 
         if (repoCount) repoCount.textContent = "--";
         if (followerCount) followerCount.textContent = "--";
@@ -89,6 +89,10 @@ async function loadRepositories() {
             `https://api.github.com/users/${githubUser}/repos?sort=updated&per_page=6`
 
         );
+
+        if (!response.ok) {
+            throw new Error("Unable to fetch repositories.");
+        }
 
         const repos = await response.json();
 
@@ -138,9 +142,11 @@ async function loadRepositories() {
 
     catch (error) {
 
+        console.error("Repository Loading Error:", error);
+
         repositoriesContainer.innerHTML =
 
-        "<p>Unable to load repositories.</p>";
+        "<p>Unable to load repositories. Please try again later.</p>";
 
     }
 

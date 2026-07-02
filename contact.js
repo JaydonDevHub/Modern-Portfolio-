@@ -20,7 +20,7 @@ const email=
 contactForm.querySelector('input[type="email"]').value.trim();
 
 const subject=
-contactForm.querySelectorAll("input")[2].value.trim();
+contactForm.querySelector('input[placeholder="Subject"]').value.trim();
 
 const message=
 contactForm.querySelector("textarea").value.trim();
